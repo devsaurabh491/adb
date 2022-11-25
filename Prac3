@@ -1,0 +1,213 @@
+> show dbs
+admin    0.000GB
+college  0.000GB
+config   0.000GB
+local    0.000GB
+sumit    0.000GB
+> use college
+switched to db college
+> show collections
+student
+> db.student.find()
+{ "_id" : ObjectId("632db96a09103e850427cafa"), "id" : 1, "name" : "Sumit Agale", "email" : "kbtug20264@kbtcoe.org", "address" : "Nashik", "Marks_semOne" : 90, "Marks_semTwo" : 95 }
+{ "_id" : ObjectId("632db98c09103e850427cafb"), "id" : 1, "name" : "Tushar Pagar", "email" : "kbtug20364@kbtcoe.org", "address" : "Nashik", "Marks_semOne" : 90, "Marks_semTwo" : 90 }
+{ "_id" : ObjectId("632db9cc09103e850427cafc"), "id" : 3, "name" : "Samir Wagh", "email" : "kbtug20365@kbtcoe.org", "address" : "Pune", "Marks_semOne" : 80, "Marks_semTwo" : 90 }
+{ "_id" : ObjectId("632dba0909103e850427cafd"), "id" : 4, "name" : "Tejas Dheringe", "email" : "kbtug20266@kbtcoe.org", "address" : "Mumbai", "Marks_semOne" : 85, "Marks_semTwo" : 70 }
+{ "_id" : ObjectId("632dba4009103e850427cafe"), "id" : 5, "name" : "Vivek Swami", "email" : "kbtug20267@kbtcoe.org", "address" : "Mumbai", "Marks_semOne" : 86, "Marks_semTwo" : 96 }
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+{
+        "_id" : ObjectId("632db98c09103e850427cafb"),
+        "id" : 1,
+        "name" : "Tushar Pagar",
+        "email" : "kbtug20364@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({$where: function(){return(obj.Marks_semOne == obj.Marks_semTwo)}})
+{ "_id" : ObjectId("632db98c09103e850427cafb"), "id" : 1, "name" : "Tushar Pagar", "email" : "kbtug20364@kbtcoe.org", "address" : "Nashik", "Marks_semOne" : 90, "Marks_semTwo" : 90 }
+> db.student.find({$where: function(){return(obj.Marks_semOne == obj.Marks_semTwo)}}).preety()
+uncaught exception: TypeError: db.student.find(...).preety is not a function :
+@(shell):1:1
+> db.student.find({$where: function(){return(obj.Marks_semOne == obj.Marks_semTwo)}}).pretty()
+{
+        "_id" : ObjectId("632db98c09103e850427cafb"),
+        "id" : 1,
+        "name" : "Tushar Pagar",
+        "email" : "kbtug20364@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 90
+}
+> var myCursor = db.student.find({id: {$gt: 3}})
+> while (myCursor.hasNext()) {
+... print(tojson(myCursor.next()));
+... }
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find().limit(3).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+{
+        "_id" : ObjectId("632db98c09103e850427cafb"),
+        "id" : 1,
+        "name" : "Tushar Pagar",
+        "email" : "kbtug20364@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+> db.student.find().limit(1).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+>
+> db.student.find().sort({id: -1}).pretty()
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+{
+        "_id" : ObjectId("632db98c09103e850427cafb"),
+        "id" : 1,
+        "name" : "Tushar Pagar",
+        "email" : "kbtug20364@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 90
+}
+> db.student.find().skip(2).pretty()
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+>
