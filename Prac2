@@ -1,0 +1,286 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+sumit   0.000GB
+> use sumit
+switched to db sumit
+> show collections
+Employee
+collection
+student
+> db.student.find()
+{ "_id" : ObjectId("62e3ccbcc71a31684b10b0b7"), "age" : 19 }
+{ "_id" : ObjectId("62e3ccbcc71a31684b10b0b8"), "name" : "Vikas", "age" : "20", "college" : "NDMVP Samajas KBTCOE" }
+{ "_id" : ObjectId("62e3ccbcc71a31684b10b0b9"), "name" : "Suraj", "age" : "20", "college" : "NDMVP Samajas KBTCOE" }
+{ "_id" : ObjectId("62ee5580b4d1264b53e1dd75"), "Salary" : 60000 }
+{ "_id" : ObjectId("62ee5580b4d1264b53e1dd76"), "name" : "Krushna", "Salary" : "45055500" }
+{ "_id" : ObjectId("62ee5d94f3e62cf73e145d6d"), "Name" : "Rohan", "Profession" : "Devloper" }
+> use college
+switched to db college
+> show collections
+> db.createCollection('student');
+{ "ok" : 1 }
+> db.student.insertMany({
+... id:1,
+... name: 'Sumit Agale',
+... email: 'kbtug20264@kbtcoe.org',
+... Address: 'Nashik',
+... marks: 92,
+... sport_marks: 90},
+... {
+... ... id:1,
+... ... name: 'Sumit Agale',
+... ... email: 'kbtug20264@kbtcoe.org',
+... ... Address: 'Nashik',
+... ... marks: 92,
+... ^C
+
+> db.student.insertOne({id: 1, name: 'Sumit Agale', email: 'kbtug20264@kbtcoe.org', address: 'Nashik', Marks_semOne: 90, Marks_semTwo: 95})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("632db96a09103e850427cafa")
+}
+> db.student.insertOne({id: 1, name: 'Tushar Pagar', email: 'kbtug20364@kbtcoe.org', address: 'Nashik', Marks_semOne: 90, Marks_semTwo: 90})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("632db98c09103e850427cafb")
+}
+> db.student.insertOne({id: 3, name: 'Samir Wagh', email: 'kbtug20365@kbtcoe.org', address: 'Pune', Marks_semOne: 80, Marks_semTwo: 90})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("632db9cc09103e850427cafc")
+}
+> db.student.insertOne({id: 4, name: 'Tejas Dheringe', email: 'kbtug20266@kbtcoe.org', address: 'Mumbai', Marks_semOne: 85, Marks_semTwo: 70})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("632dba0909103e850427cafd")
+}
+> db.student.insertOne({id: 5, name: 'Vivek Swami', email: 'kbtug20267@kbtcoe.org', address: 'Mumbai', Marks_semOne: 86, Marks_semTwo: 96})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("632dba4009103e850427cafe")
+}
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+{
+        "_id" : ObjectId("632db98c09103e850427cafb"),
+        "id" : 1,
+        "name" : "Tushar Pagar",
+        "email" : "kbtug20364@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find(name:'Sumit Agale').pretty()
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:20
+> db.student.find({name:'Sumit Agale'}).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+> db.student.find({name:'Sumit Agale',id: 1}).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+> db.student.find({name:'Sumit Agale',id: 2}).pretty()
+> db.student.find($or: [{id: 2},{name:'Vivek Swami' }]).pretty()
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:19
+> db.student.find({$or: [{id: 2},{name:'Vivek Swami' }]}).pretty()
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({$or: [{id: '2'},{name:'Vivek Swami' }]}).pretty()
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({$and: [{id: '2'},{name:'Vivek Swami' }]}).pretty()
+> db.student.find({$and: [{id: '3'},{name:'Samir Wagh' }]}).pretty()
+> db.student.find({$and: [{id: '1'},{name:'Sumit Agale' }]}).pretty()
+> db.student.find({$and: [{id: '1'},{email: 'kbtug20264@kbtcoe.org' }]}).pretty()
+> db.student.find({$and: [{id: 1},{email: 'kbtug20264@kbtcoe.org' }]}).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+> db.student.find({$and: [{id: 5},{email: 'kbtug20264@kbtcoe.org' }]}).pretty()
+> db.student.find({$and: [{id: 5},{email: 'kbtug20267@kbtcoe.org' }]}).pretty()
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({Marks_semOne:{$lt 90}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:35
+> db.student.find({Marks_semOne:{$lt: 90}})
+{ "_id" : ObjectId("632db9cc09103e850427cafc"), "id" : 3, "name" : "Samir Wagh", "email" : "kbtug20365@kbtcoe.org", "address" : "Pune", "Marks_semOne" : 80, "Marks_semTwo" : 90 }
+{ "_id" : ObjectId("632dba0909103e850427cafd"), "id" : 4, "name" : "Tejas Dheringe", "email" : "kbtug20266@kbtcoe.org", "address" : "Mumbai", "Marks_semOne" : 85, "Marks_semTwo" : 70 }
+{ "_id" : ObjectId("632dba4009103e850427cafe"), "id" : 5, "name" : "Vivek Swami", "email" : "kbtug20267@kbtcoe.org", "address" : "Mumbai", "Marks_semOne" : 86, "Marks_semTwo" : 96 }
+> db.student.find({Marks_semOne:{$lt: 90}}).pretty()
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({Marks_semOne:{$lte: 85}}).pretty()
+{
+        "_id" : ObjectId("632db9cc09103e850427cafc"),
+        "id" : 3,
+        "name" : "Samir Wagh",
+        "email" : "kbtug20365@kbtcoe.org",
+        "address" : "Pune",
+        "Marks_semOne" : 80,
+        "Marks_semTwo" : 90
+}
+{
+        "_id" : ObjectId("632dba0909103e850427cafd"),
+        "id" : 4,
+        "name" : "Tejas Dheringe",
+        "email" : "kbtug20266@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 85,
+        "Marks_semTwo" : 70
+}
+> db.student.find({Marks_semOne:{$gt: 90}}).pretty()
+> db.student.find({Marks_semTwo:{$gt: 90}}).pretty()
+{
+        "_id" : ObjectId("632db96a09103e850427cafa"),
+        "id" : 1,
+        "name" : "Sumit Agale",
+        "email" : "kbtug20264@kbtcoe.org",
+        "address" : "Nashik",
+        "Marks_semOne" : 90,
+        "Marks_semTwo" : 95
+}
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({Marks_semTwo:{$gte: 96}}).pretty()
+{
+        "_id" : ObjectId("632dba4009103e850427cafe"),
+        "id" : 5,
+        "name" : "Vivek Swami",
+        "email" : "kbtug20267@kbtcoe.org",
+        "address" : "Mumbai",
+        "Marks_semOne" : 86,
+        "Marks_semTwo" : 96
+}
+> db.student.find({Marks_semTwo:{$in: ['60','80']}}).pretty()
+> db.student.find({Marks_semTwo:{$in:['60','80']}}).pretty()
+> db.student.find({Marks_semTwo:{$in:[60,80]}}).pretty()
+> db.student.find({Marks_semTwo:{$in:[{'60'},{'80'}]}}).pretty()
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:41
+> db.student.find({$not: [{name:'Vivek Swami'}]}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $not. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.student.find({$not: [{name:'Vivek Swami'},{id: 4}]}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $not. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+>
