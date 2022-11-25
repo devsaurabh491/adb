@@ -1,0 +1,429 @@
+1) Cheacking databases
+
+> show dbs
+adbms_project  0.001GB
+admin          0.000GB
+college        0.000GB
+config         0.000GB
+local          0.000GB
+sumit          0.000GB
+2) Seleecting database named as sumit
+> use sumit
+switched to db sumit
+> show collections
+Employee
+collection
+student
+3) Insert documents in collection Employee 
+> db.Employee.insertOne({emp_id: "1", name: "Sumit Agale", age: "20", department: "IT", salary: "200000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("636677c1b54706b48482f859")
+}
+> db.Employee.insertOne({emp_id: "2", name: "Yuvraj Gaidhani", age: "20", department: "Mechanical", salary: "150000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63667803b54706b48482f85a")
+}
+> db.Employee.insertOne({emp_id: "3", name: "Ravindra Gaidhani", age: "19", department: "Mechanical", salary: "100000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6366783bb54706b48482f85b")
+}
+> db.Employee.insertOne({emp_id: "4", name: "Sopan Nagare", age: "21", department: "Sivil", salary: "50000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63667878b54706b48482f85c")
+}
+> db.Employee.insertOne({emp_id: "5", name: "Swapnil Agale", age: "22", department: "Press", salary: "150000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("636678a4b54706b48482f85d")
+}
+> db.Employee.insertOne({emp_id: "6", name: "Vikaram jadhav", age: "25", department: "Press", salary: "150000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("636678ccb54706b48482f85e")
+}
+> db.Employee.insertOne({emp_id: "7", name: "Vinayak Muthal", age: "23", department: "Computer", salary: "175000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63667951b54706b48482f85f")
+}
+> db.Employee.insertOne({emp_id: "8", name: "Krushna Gaikhe", age: "21", department: "Computer", salary: "25000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6366797cb54706b48482f860")
+}
+> db.Employee.insertOne({emp_id: "9", name: "Akshay Jagtap", age: "20", department: "IT", salary: "75000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("636679abb54706b48482f861")
+}
+> db.Employee.insertOne({emp_id: "10", name: "Prajval Gunjal", age: "22", department: "Press", salary: "90000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("636679e4b54706b48482f862")
+}
+
+4) show documents
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("636677c1b54706b48482f859"),
+        "emp_id" : "1",
+        "name" : "Sumit Agale",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "200000"
+}
+{
+        "_id" : ObjectId("63667803b54706b48482f85a"),
+        "emp_id" : "2",
+        "name" : "Yuvraj Gaidhani",
+        "age" : "20",
+        "department" : "Mechanical",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("6366783bb54706b48482f85b"),
+        "emp_id" : "3",
+        "name" : "Ravindra Gaidhani",
+        "age" : "19",
+        "department" : "Mechanical",
+        "salary" : "100000"
+}
+{
+        "_id" : ObjectId("63667878b54706b48482f85c"),
+        "emp_id" : "4",
+        "name" : "Sopan Nagare",
+        "age" : "21",
+        "department" : "Sivil",
+        "salary" : "50000"
+}
+{
+        "_id" : ObjectId("636678a4b54706b48482f85d"),
+        "emp_id" : "5",
+        "name" : "Swapnil Agale",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("636678ccb54706b48482f85e"),
+        "emp_id" : "6",
+        "name" : "Vikaram jadhav",
+        "age" : "25",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("63667951b54706b48482f85f"),
+        "emp_id" : "7",
+        "name" : "Vinayak Muthal",
+        "age" : "23",
+        "department" : "Computer",
+        "salary" : "175000"
+}
+{
+        "_id" : ObjectId("6366797cb54706b48482f860"),
+        "emp_id" : "8",
+        "name" : "Krushna Gaikhe",
+        "age" : "21",
+        "department" : "Computer",
+        "salary" : "25000"
+}
+{
+        "_id" : ObjectId("636679abb54706b48482f861"),
+        "emp_id" : "9",
+        "name" : "Akshay Jagtap",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "75000"
+}
+{
+        "_id" : ObjectId("636679e4b54706b48482f862"),
+        "emp_id" : "10",
+        "name" : "Prajval Gunjal",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "90000"
+}
+5) delete document where emp_id = 10
+> db.Employee.deleteOne({emp_id: "10"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("636677c1b54706b48482f859"),
+        "emp_id" : "1",
+        "name" : "Sumit Agale",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "200000"
+}
+{
+        "_id" : ObjectId("63667803b54706b48482f85a"),
+        "emp_id" : "2",
+        "name" : "Yuvraj Gaidhani",
+        "age" : "20",
+        "department" : "Mechanical",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("6366783bb54706b48482f85b"),
+        "emp_id" : "3",
+        "name" : "Ravindra Gaidhani",
+        "age" : "19",
+        "department" : "Mechanical",
+        "salary" : "100000"
+}
+{
+        "_id" : ObjectId("63667878b54706b48482f85c"),
+        "emp_id" : "4",
+        "name" : "Sopan Nagare",
+        "age" : "21",
+        "department" : "Sivil",
+        "salary" : "50000"
+}
+{
+        "_id" : ObjectId("636678a4b54706b48482f85d"),
+        "emp_id" : "5",
+        "name" : "Swapnil Agale",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("636678ccb54706b48482f85e"),
+        "emp_id" : "6",
+        "name" : "Vikaram jadhav",
+        "age" : "25",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("63667951b54706b48482f85f"),
+        "emp_id" : "7",
+        "name" : "Vinayak Muthal",
+        "age" : "23",
+        "department" : "Computer",
+        "salary" : "175000"
+}
+{
+        "_id" : ObjectId("6366797cb54706b48482f860"),
+        "emp_id" : "8",
+        "name" : "Krushna Gaikhe",
+        "age" : "21",
+        "department" : "Computer",
+        "salary" : "25000"
+}
+{
+        "_id" : ObjectId("636679abb54706b48482f861"),
+        "emp_id" : "9",
+        "name" : "Akshay Jagtap",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "75000"
+}
+6) updating document where name = Vikaram Jadhav and change name and salary
+> db.Employee.update({name: "Vikaram jadhav"},{emp_id:"6", name:"Sambaji Bhide", age:"30",department:"IT", salary:"60000"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("636677c1b54706b48482f859"),
+        "emp_id" : "1",
+        "name" : "Sumit Agale",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "200000"
+}
+{
+        "_id" : ObjectId("63667803b54706b48482f85a"),
+        "emp_id" : "2",
+        "name" : "Yuvraj Gaidhani",
+        "age" : "20",
+        "department" : "Mechanical",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("6366783bb54706b48482f85b"),
+        "emp_id" : "3",
+        "name" : "Ravindra Gaidhani",
+        "age" : "19",
+        "department" : "Mechanical",
+        "salary" : "100000"
+}
+{
+        "_id" : ObjectId("63667878b54706b48482f85c"),
+        "emp_id" : "4",
+        "name" : "Sopan Nagare",
+        "age" : "21",
+        "department" : "Sivil",
+        "salary" : "50000"
+}
+{
+        "_id" : ObjectId("636678a4b54706b48482f85d"),
+        "emp_id" : "5",
+        "name" : "Swapnil Agale",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("636678ccb54706b48482f85e"),
+        "emp_id" : "6",
+        "name" : "Sambaji Bhide",
+        "age" : "30",
+        "department" : "IT",
+        "salary" : "60000"
+}
+{
+        "_id" : ObjectId("63667951b54706b48482f85f"),
+        "emp_id" : "7",
+        "name" : "Vinayak Muthal",
+        "age" : "23",
+        "department" : "Computer",
+        "salary" : "175000"
+}
+{
+        "_id" : ObjectId("6366797cb54706b48482f860"),
+        "emp_id" : "8",
+        "name" : "Krushna Gaikhe",
+        "age" : "21",
+        "department" : "Computer",
+        "salary" : "25000"
+}
+{
+        "_id" : ObjectId("636679abb54706b48482f861"),
+        "emp_id" : "9",
+        "name" : "Akshay Jagtap",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "75000"
+} 
+7) updating document where name = vikaram Agale using upsert
+ > db.Employee.update({name: "Vikaram Agale"},{emp_id:"10", name:"Mangesh", age:"22",department:"Press", salary:"95000"},{upsert: true})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("63667f23f39f87bc8f8b62ef")
+})
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("636677c1b54706b48482f859"),
+        "emp_id" : "1",
+        "name" : "Sumit Agale",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "200000"
+}
+{
+        "_id" : ObjectId("63667803b54706b48482f85a"),
+        "emp_id" : "2",
+        "name" : "Yuvraj Gaidhani",
+        "age" : "20",
+        "department" : "Mechanical",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("6366783bb54706b48482f85b"),
+        "emp_id" : "3",
+        "name" : "Ravindra Gaidhani",
+        "age" : "19",
+        "department" : "Mechanical",
+        "salary" : "100000"
+}
+{
+        "_id" : ObjectId("63667878b54706b48482f85c"),
+        "emp_id" : "4",
+        "name" : "Sopan Nagare",
+        "age" : "21",
+        "department" : "Sivil",
+        "salary" : "50000"
+}
+{
+        "_id" : ObjectId("636678a4b54706b48482f85d"),
+        "emp_id" : "5",
+        "name" : "Swapnil Agale",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "150000"
+}
+{
+        "_id" : ObjectId("636678ccb54706b48482f85e"),
+        "emp_id" : "6",
+        "name" : "Sambaji Bhide",
+        "age" : "30",
+        "department" : "IT",
+        "salary" : "60000"
+}
+{
+        "_id" : ObjectId("63667951b54706b48482f85f"),
+        "emp_id" : "7",
+        "name" : "Vinayak Muthal",
+        "age" : "23",
+        "department" : "Computer",
+        "salary" : "175000"
+}
+{
+        "_id" : ObjectId("6366797cb54706b48482f860"),
+        "emp_id" : "8",
+        "name" : "Krushna Gaikhe",
+        "age" : "21",
+        "department" : "Computer",
+        "salary" : "25000"
+}
+{
+        "_id" : ObjectId("636679abb54706b48482f861"),
+        "emp_id" : "9",
+        "name" : "Akshay Jagtap",
+        "age" : "20",
+        "department" : "IT",
+        "salary" : "75000"
+}
+{
+        "_id" : ObjectId("63667ec2f39f87bc8f8b62e6"),
+        "emp_id" : "6",
+        "name" : "Sambaji Bhide",
+        "age" : "30",
+        "department" : "IT",
+        "salary" : "60000"
+}
+{
+        "_id" : ObjectId("63667f23f39f87bc8f8b62ef"),
+        "emp_id" : "10",
+        "name" : "Mangesh",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "95000"
+8) Finding document where emp_id is 10
+> db.Employee.findOne({emp_id:"10"})
+{
+        "_id" : ObjectId("63667f23f39f87bc8f8b62ef"),
+        "emp_id" : "10",
+        "name" : "Mangesh",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "95000"
+}
+11) Finding document where emp_id is 6 or department is Press
+> db.Employee.findOne({$or:[{emp_id: "6"},{department: "Press"}]})
+{
+        "_id" : ObjectId("636678a4b54706b48482f85d"),
+        "emp_id" : "5",
+        "name" : "Swapnil Agale",
+        "age" : "22",
+        "department" : "Press",
+        "salary" : "150000"
+}
+12) Finding document where emp_id is 6 and department is IT
+
+> db.Employee.findOne({$and:[{emp_id: "6"},{department: "IT"}]})
+{
+        "_id" : ObjectId("636678ccb54706b48482f85e"),
+        "emp_id" : "6",
+        "name" : "Sambaji Bhide",
+        "age" : "30",
+        "department" : "IT",
+        "salary" : "60000"
+}
